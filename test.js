@@ -1,2 +1,10 @@
-console.log('hello javascript');
-console.log('I am ram.');
+function showMessages(messages) {
+	for (message in messages) {
+		console.log(messages[message]);
+	}
+}
+
+var messages = [];
+messages.push('hello javascript');
+messages.push('I am ram.');
+showMessages(messages);
