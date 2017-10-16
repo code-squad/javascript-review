@@ -16,7 +16,7 @@ const calculateCircle = function (...theArgs) {
 
     return Math.PI * radius * radius;
 }
-const calculateSquare = function (...theArgs) {
+const calculateRect = function (...theArgs) {
     if (theArgs.length === 0) {
         return "최소 한가지 값이 필요합니다";
     }
@@ -58,3 +58,30 @@ const calculateTrapezoid = function (...theArgs) {
 
     return ((base + upper) / 2) * height;
 }
+const getArea = function (...theArgs) {
+    let name = theArgs.shift();
+    switch (name) {
+        case "circle":
+            let len = theArgs.length;
+            if (len === 1)
+                console.log(calculateCircle(theArgs[0]));
+            else if (len === 2) {
+                for (let i = theArgs[0], count = theArgs[1]; i <= count; i++)
+                    console.log(calculateCircle(i));
+            }
+            break;
+        case "rect":
+            console.log(calculateRect(theArgs[0], theArgs[1]));
+            break;
+        case "trapezoid":
+            console.log(calculateTrapezoid(theArgs[0], theArgs[1], theArgs[2]));
+            break;
+        default:
+            console.log("Sorry, we are out of " + name + ".");
+    }
+
+}
+// getArea('circle', 10);
+// getArea('rect', 10, 15);
+// getArea('trapezoid', 10, 15, 12);
+getArea('circle', 1, 100);
