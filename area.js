@@ -1,11 +1,12 @@
-const calculateCircle = function (...theArgs) {
-    if (theArgs.length === 0) {
+const calculateCircle = (...theArgs) => {
+    let len = theArgs.length;
+    if (len === 0) {
         return "최소 한가지 값이 필요합니다";
     }
-    if (theArgs.length !== 1) {
+    if (len !== 1) {
         return "1개의 인자가 필요합니다";
     }
-    for (let i = 0, len = theArgs.length; i < len; i++) {
+    for (let i = 0; i < len; i++) {
         if (!Number.isInteger(theArgs[i])) {
             return "숫자형타입만 계산이 가능합니다.";
         }
@@ -14,16 +15,18 @@ const calculateCircle = function (...theArgs) {
         return "반지름은 0보다 커야 합니다";
     let radius = theArgs[0];
 
+    execution.push("circle");
     return Math.PI * radius * radius;
-}
-const calculateRect = function (...theArgs) {
-    if (theArgs.length === 0) {
+};
+const calculateRect = (...theArgs) => {
+    let len = theArgs.length;
+    if (len === 0) {
         return "최소 한가지 값이 필요합니다";
     }
-    if (theArgs.length !== 2) {
+    if (len !== 2) {
         return "2개의 인자가 필요합니다";
     }
-    for (let i = 0, len = theArgs.length; i < len; i++) {
+    for (let i = 0; i < len; i++) {
         if (!Number.isInteger(theArgs[i])) {
             return "숫자형타입만 계산이 가능합니다.";
         }
@@ -34,16 +37,18 @@ const calculateRect = function (...theArgs) {
         return "높이는 0보다 커야 합니다";
     let [width, height] = theArgs;
 
+    execution.push("rect");
     return width * height;
-}
-const calculateTrapezoid = function (...theArgs) {
-    if (theArgs.length === 0) {
+};
+const calculateTrapezoid = (...theArgs) => {
+    let len = theArgs.length;
+    if (len === 0) {
         return "최소 한가지 값이 필요합니다";
     }
-    if (theArgs.length !== 3) {
+    if (len !== 3) {
         return "3개의 인자가 필요합니다";
     }
-    for (let i = 0, len = theArgs.length; i < len; i++) {
+    for (let i = 0; i < len; i++) {
         if (!Number.isInteger(theArgs[i])) {
             return "숫자형타입만 계산이 가능합니다.";
         }
@@ -56,18 +61,20 @@ const calculateTrapezoid = function (...theArgs) {
         return "높이는 0보다 커야 합니다";
     let [base, upper, height] = theArgs;
 
+    execution.push("trapezoid");
     return ((base + upper) / 2) * height;
-}
-const getArea = function (...theArgs) {
+};
+const getArea = (...theArgs) => {
     let name = theArgs.shift();
     switch (name) {
         case "circle":
             let len = theArgs.length;
-            if (len === 1)
+            if (len === 1) {
                 console.log(calculateCircle(theArgs[0]));
-            else if (len === 2) {
-                for (let i = theArgs[0], count = theArgs[1]; i <= count; i++)
+            } else if (len === 2) {
+                for (let i = theArgs[0], count = theArgs[1]; i <= count; i++) {
                     console.log(calculateCircle(i));
+                }
             }
             break;
         case "rect":
@@ -80,8 +87,22 @@ const getArea = function (...theArgs) {
             console.log("Sorry, we are out of " + name + ".");
     }
 
+};
+const getReport = () => {
+    console.log("계산수행순서 : " + execution);
+};
+const print = (num) => {
+    console.log("계산이 " + num + "번 일어났습니다.");
+};
+
+let execution = [];
+let length = 0;
+execution.push = function () {
+    print(++length);
+    return Array.prototype.push.apply(this, arguments);
 }
-// getArea('circle', 10);
-// getArea('rect', 10, 15);
+getArea('circle', 10);
+getArea('rect', 10, 15);
 // getArea('trapezoid', 10, 15, 12);
-getArea('circle', 1, 100);
+getArea('circle', 1, 15);
+getReport();
