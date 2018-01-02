@@ -1,1 +1,11 @@
-console.log("hello JS");
+function test() {
+  var i = 0;
+  while (i < 5) {
+    console.log("hello JS");
+    i++
+  }
+}
+
+(function () {
+  test();
+})();
