@@ -22,7 +22,7 @@ var calculateRectangle = function (width, height) {
   }
 }
 
-function calculateTrapezoid(base, upper, height) {
+var calculateTrapezoid = function (base, upper, height) {
   if (arguments.length !== 3) {
     return "3개의 인자가 필요합니다."
   } else if (typeof (base) !== 'number' && typeof (upper) !== 'number' && typeof (height) !== 'number') {
