@@ -1,101 +1,121 @@
-var calculateCircle = function (radius) {
-  if (arguments.length < 1) {
-    return '최소 한가지 값이 필요합니다.';
-  } else if (!isNumbers(Array.from(arguments)[0])) {
-    return '숫자형타입만 계산이 가능합니다.';
-  } else if (radius < 0) {
-    return '반지름은 0보다 커야 합니다.';
+/* 삼각형을 제작하는 함수 */
+function getCircle(radius) {
+  var checkTypeResult = checkTypes(Array.from(arguments));
+  var checkPositiveNumResult = checkPositiveNum(Array.from(arguments));
+  var checkShapeResult = checkShape("circle", Array.from(arguments));
+
+  if (!checkTypeResult) {
+    return checkTypeResult;
+  } else if (!checkPositiveNumResult) {
+    return checkPositiveNumResult;
+  } else if (!checkShapeResult) {
+    return checkShapeResult;
   } else {
     return Math.PI * Math.pow(radius, 2);
   }
 }
 
 
-var calculateRectangle = function (width, height) {
-  for (var i = 0; i < arguments.length; i++) {
-    if (arguments.length < 2) {
-      return '최소 두 가지 값이 필요합니다';
-    } else if (!isNumbers(Array.from(arguments)[i])) {
-      return '숫자형타입만 계산이 가능합니다.';
-    } else if (arguments[i] < 0) {
-      return '밑변과 높이는 0보다 커야 합니다';
+/* 사각형을 제작하는 함수 */
+function getRectangle(width, height) {
+  var checkTypeResult = checkTypes(Array.from(arguments));
+  var checkPositiveNumResult = checkPositiveNum(Array.from(arguments));
+  var checkShapeResult = checkShape("rect", Array.from(arguments));
+
+  if (!checkTypeResult) {
+    return checkTypeResult;
+  } else if (!checkPositiveNumResult) {
+    return checkPositiveNumResult;
+  } else if (!checkShapeResult) {
+    return checkShapeResult;
+  } else {
+    return width * height;
+  }
+}
+
+
+/* 사다리꼴을 제작하는 함수 */
+function getTrapezoid(base, upper, height) {
+  var checkTypeResult = checkTypes(Array.from(arguments));
+  var checkPositiveNumResult = checkPositiveNum(Array.from(arguments));
+  var checkShapeResult = checkShape("trap", Array.from(arguments));
+
+  if (!checkTypeResult) {
+    return checkTypeResult;
+  } else if (!checkPositiveNumResult) {
+    return checkPositiveNumResult;
+  } else if (!checkShapeResult) {
+    return checkShapeResult;
+  } else {
+    return ((base + upper) * height) / 2;
+  }
+}
+
+
+/* 타입을 체크하는 함수 */
+function checkTypes(...theArgs) {
+  for (var i = 0; i < theArgs.length; i++) {
+    if (!Number.isInteger(theArgs[0][i])) {
+      console.log('숫자형 타입만 계산이 가능합니다');
+      return false;
     } else {
-      return width * height;
+      return true;
     }
   }
 }
 
-function calculateTrapezoid(base, upper, height) {
-  for (var i = 0; i < arguments.length; i++) {
-    if (!isNumbers(Array.from(arguments)[i])) {
-      return '숫자형 타입만 계산이 가능합니다.';
-    } else if (arguments.length < 3) {
-      return '최소 세 가지 값이 필요합니다.';
-    } else if (arguments[i] < 0) {
-      return '밑변과 윗변과 높이는 0보다 커야 합니다.';
+
+/* 양수인지 체크하는 함수 */
+function checkPositiveNum(component) {
+  for (var i = 0; i < component.length; i++) {
+    if (component[i] < 0) {
+      console.log('입력 값은 0보다 커야 합니다');
+      return false;
     } else {
-      return ((base + upper) * height) / 2;
+      return true;
     }
   }
 }
 
 
-function isNumbers(args) {
-  for (var i = 0; i < arguments.length; i++) {
-    return Number.isInteger(Array.from(arguments)[i]);
+/* 각 도형에 인자의 갯수가 알맞게 들어갔는지 체크하는 함수 */
+function checkShape(shape, num) {
+  if (shape === 'circle' && num.length < 1) {
+    console.log('1개의 인자가 필요합니다.');
+    return false;
+  } else if (shape === 'rect' && num.length < 2) {
+    console.log("2개의 인자가 필요합니다.");
+    return false;
+  } else if (shape === 'trap' && num.length < 3) {
+    console.log("3개의 인자가 필요합니다.");
+    return false;
+  } else {
+    return true;
   }
 }
 
 
 
-
 console.log("==================================================");
-console.log("calculateCircle(10):", calculateCircle(10));
-console.log("calculateCircle(10, 20):", calculateCircle(10, 20));
-console.log("calculateCircle('10'):", calculateCircle('10'));
-console.log("calculateCircle():", calculateCircle());
-console.log("calculateCircle(-1):", calculateCircle(-1));
-console.log("==================================================");
-console.log("|");
-console.log("==================================================");
-console.log("calculateRectangle(10, 15):", calculateRectangle(10, 15));
-console.log("calculateRectangle(10, 15, 20):", calculateRectangle(10, 15, 20));
-console.log("calculateRectangle('10', '15'):", calculateRectangle('10', '15'));
-console.log("calculateRectangle(10):", calculateRectangle(10));
-console.log("calculateRectangle(-10, -15):", calculateRectangle(-10, -15));
+console.log("getCircle(10):", getCircle(10));
+console.log("getCircle(10, 20):", getCircle(10, 20));
+console.log("getCircle('10'):", getCircle('10'));
+console.log("getCircle():", getCircle());
+console.log("getCircle(-1):", getCircle(-1));
 console.log("==================================================");
 console.log("|");
 console.log("==================================================");
-console.log("calculateTrapezoid(10, 5, 12):", calculateTrapezoid(10, 5, 12));
-console.log("calculateTrapezoid(10, 5, 12, 13, 14):", calculateTrapezoid(10, 5, 12, 13, 14));
-console.log("calculateTrapezoid('10', '5', '12'):", calculateTrapezoid('10', '5', '12'));
-console.log("calculateTrapezoid(10):", calculateTrapezoid(10));
-console.log("calculateTrapezoid(-10, -5, -12):", calculateTrapezoid(-10, -5, -12));
+console.log("getRectangle(10, 15):", getRectangle(10, 15));
+console.log("getRectangle(10, 15, 20):", getRectangle(10, 15, 20));
+console.log("getRectangle('10', '15'):", getRectangle('10', '15'));
+console.log("getRectangle(10):", getRectangle(10));
+console.log("getRectangle(-10, -15):", getRectangle(-10, -15));
 console.log("==================================================");
-
-
-
-// function getArea(shape, a, b, c) {
-//   if (shape === 'circle') {
-//     if (arguments.length === 2) {
-//       return calculateCircle(a)
-//     } else if (arguments.length === 3) {
-//       for (var i = a; i <= b; i++) {
-//         console.log(calculateCircle(i));
-//       }
-//     }
-//   } else if (shape === 'rect') {
-//     return calculateRectangle(a, b)
-//   } else if (shape === 'trapezoid') {
-//     return calculateTrapezoid(a, b, c)
-//   }
-// }
-
-
-
-// console.log("=========================================================");
-// console.log("getArea('circle', 10):", getArea('circle', 10));
-// console.log("getArea('rect', 10, 15):", getArea('rect', 10, 15));
-// console.log("getArea('trapezoid', 10, 15, 12):", getArea('trapezoid', 10, 15, 12));
-// console.log("getArea('circle', 1, 100):", getArea('circle', 1, 100));
-// console.log("=========================================================");
+console.log("|");
+console.log("==================================================");
+console.log("getTrapezoid(10, 5, 12):", getTrapezoid(10, 5, 12));
+console.log("getTrapezoid(10, 5, 12, 13, 14):", getTrapezoid(10, 5, 12, 13, 14));
+console.log("getTrapezoid('10', '5', '12'):", getTrapezoid('10', '5', '12'));
+console.log("getTrapezoid(10, 5):", getTrapezoid(10, 5));
+console.log("getTrapezoid(-10, -5, -12):", getTrapezoid(-10, -5, -12));
+console.log("=================================================="); 
