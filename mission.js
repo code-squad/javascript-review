@@ -4,17 +4,16 @@ function getArea(polygon, ...theArgs) {
   var checkTypeResult = checkTypes(sidesOfPolygon);
   var checkPositiveNumResult = checkPositiveNum(sidesOfPolygon);
   var checkInputResult = checkInputs(sidesOfPolygon);
-
-  if (checkInputResult && checkTypeResult && checkPositiveNumResult) {
-    if (polygon === 'circle' && theArgs.length === 1) {
-      return Math.PI * Math.pow(theArgs[0], 2);
-    } else if (polygon === 'rect' && theArgs.length === 2) {
-      return theArgs[0] * theArgs[1];
-    } else if (polygon === 'trap' && theArgs.length === 3) {
-      return ((theArgs[0] + theArgs[1]) * theArgs[2]) / 2;
-    }
-  } else {
+  
+  if (!(checkInputResult && checkTypeResult && checkPositiveNumResult)) {
     return false;
+  }
+  if (polygon === 'circle' && theArgs.length === 1) {
+    return Math.PI * Math.pow(theArgs[0], 2);
+  } else if (polygon === 'rect' && theArgs.length === 2) {
+    return theArgs[0] * theArgs[1];
+  } else if (polygon === 'trap' && theArgs.length === 3) {
+    return ((theArgs[0] + theArgs[1]) * theArgs[2]) / 2;
   }
 }
 
