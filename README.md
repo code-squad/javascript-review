@@ -1,4 +1,4 @@
-# 프론트엔드 레벨2
+# 프론트엔드 레벨2
 
 - ### 일정관리
 
@@ -16,7 +16,7 @@
 - ### 학습내용 정리
 
   - **웹프론트엔드 레벨2**
-    - HELLO JAVASCRIPT
+    - [HELLO JAVASCRIPT](https://github.com/antaehyeon/javascript-review/blob/ae3ab749485e1ac5d22e87fc612c0a8574417440/README/HELLO_JAVASCRIPT.md)
     - 다각형의 넓이
     - 학점계산기
     - 중간 미션

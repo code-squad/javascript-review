@@ -41,3 +41,33 @@
 4. github 리뷰를위한 프로젝트 준비
 
 5. 브라우저 자바스크립트
+
+   - main.html
+
+     ```html
+     <html>
+         <head></head>
+         <body>
+             <div class="show"></div>
+         </body>
+         <script src="./main.js"></script>
+     </html>
+     ```
+
+   - main.js
+
+     ```javascript
+     function show(s) {
+       s = s || ":-)";
+       document.querySelector(".show").insertAdjacentHTML("beforeend", `<p>${s}</p>`);
+     }
+     ```
+
+   - 크롬 브라우저에서 main.html 실행 개발자도구의 콘솔창을 열어서 코드실행
+
+     ```
+     show("show 함수가 잘 불려지나요?");
+     show("Hello world!");
+     ```
+
+     ​
