@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset="utf-8"/>
+  </head>
+  <body>
+      <script>
+function shuffle(f) {
+    var p, o, u;
+    for (u = f.length; u; u -= 1) {
+        p = Math.floor(Math.random() * u);
+        o = f[u - 1];
+        f[u - 1] = f[p];
+        f[p] = o;
+    }
+}
+var arr = [1,2,3,4,5,6,7,8,9];
+shuffle(arr);
+alert(arr);
+var x,y,z;
+x = arr.pop();
+y = arr.pop();
+z = arr.pop();
+var array1 = [];
+array1.push(x,y,z);
+alert(array1);
+
+var input;
+var inputArray;
+
+while(strike !== 3){
+  input = prompt("숫자를 입력하세요");
+  inputArray = input.split(',');
+  console.log(inputArray);
+var strike = 0;
+var ball = 0;
+for(var i=0; i<3; i++){
+  if(array1[i] == inputArray[i]){
+    strike++;
+  }
+for(var j=0; j<3; j++){
+  if((i!==j) && (array1[i] == inputArray[j])){
+  ball++;
+    }
+  }
+}
+}
+var a = function() {
+  if(strike == 3){
+    console.log("3 스타리이크! 게임 종료");
+  }
+  else if(ball == 0 && strike == 0){
+    console.log("nothing");
+  }
+  else{
+    console.log(strike + "스트라이크" + ball + "볼");
+  }
+}
+a();
+
+</script>
+</body>
+</html>
