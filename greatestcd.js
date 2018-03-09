@@ -13,4 +13,4 @@ function input(){
     }
   }
 }
- console.log(input(100,45,10,5,1));
+ console.log(input(100,45,10));
