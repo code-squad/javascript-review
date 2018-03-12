@@ -152,3 +152,70 @@
 - ### 정규표현식
 
   - 패턴으로 처리하는 방식
+
+
+
+- ### [자바스크립트 3점 표기법](https://ddalpange.github.io/2018/01/11/js-es6-three-dots/)
+
+  - Literal 문법
+
+    ```javascript
+    const object = {a: 1, b: 2 , c: 3};
+    const {a, b} = object;
+    console.log(a, b); // 1, 2
+
+    const array = [1,2,3,4,5];
+    const [c, d] = array;
+    console.log(c, b); // 1, 2
+    ```
+
+    - a,b 와 c,d의 값은 1,2가 나옴
+    - 프로퍼티가 점점 많아지면?
+    - 해당 값의 변수를 계속 선언해주기에는 무리
+
+  ​
+
+  - Rest Opeator
+
+    ```javascript
+    const object = {a: 1, b: 2 , c: 3};
+    const {a, b, ...objRest} = object;
+    console.log(a, b, objRest); // 1, 2 { c: 3 }
+
+    const array = [1,2,3,4,5];
+    const [c, d, ...arrayRest] = array;
+    console.log(c, b, arrayRest); // 1, 2
+    ```
+
+    - 앞에 `...` 를 명시하면
+    - 나머지 원소들을 `배열` 로 리턴하거나
+    - Object 라면 열거할 수 있는 나머지 Property를 묶어 Object로 반환함
+
+  ​
+
+  - Spread Operator
+
+    - Rest 와는 반대되는 의미
+
+    ```javascript
+    const a = [1,2,3];
+    const aa = [...a, ...a];
+    console.log(aa) // [1, 2, 3, 1, 2, 3]
+    ```
+
+    ```javascript
+    export interface Component {
+    	defaultProps = {}
+        props = {};
+        
+        setValue = (props) => {
+        	this.props = {...this.defaultProps, ...props};
+        }	
+    }
+    ```
+
+    ```javascript
+    new Date(...[2018,01,01]);
+    ```
+
+    ​
