@@ -15,4 +15,4 @@ function Trapezoid(Tbase, Tuppbase, Theight){
 
 console.log(circle(10));
 console.log(square(10, 15));
-console.log(Trapezoid(10, 5));
+console.log(Trapezoid(10, 5, 12));
