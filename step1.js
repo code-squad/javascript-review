@@ -1,3 +1,7 @@
+/**
+ * Goal: 숫자타입으로만 구성된 요소를 뽑아 배열만들기
+ */
+
 const widget = {
     "debug": "on",
     "window": {
