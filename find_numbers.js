@@ -36,4 +36,5 @@ function get_number_keys(o) {
       num_keys);
 }
 
+console.log('It works!');
 console.log(get_number_keys(widget));
