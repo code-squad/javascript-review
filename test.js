@@ -24,7 +24,7 @@ const widget = {
       "onMouseUp": "sun1.opacity = (sun1.opacity / 100) * 90;"
   }
 }
-const extractNumberKey = () => {
+const example = () => {
   const array = [];
   const keys = Object.keys(widget);
   keys.forEach((key) => {
@@ -41,7 +41,7 @@ const extractNumberKey = () => {
   return array
 } 
   
-console.log('extractNumberKey():', extractNumberKey());
+console.log('example():', example());
 
 // const keys = Object.keys(widget);
 // keys.forEach((key) => {
