@@ -25,6 +25,7 @@ const widget = {
     }
 }
 
+// 주석추가
 Object.keys(widget).forEach((key) => {
   let keylist = widget[key]
   Object.keys(keylist).forEach((key) => {
