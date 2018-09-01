@@ -39,5 +39,5 @@ Object.keys(widget).forEach(function(key){
     }
 
 });
-
-console.log ("resultArr == " + resultArr);
+// 오~~~ 다시.
+console.log ("again resultArr == " + resultArr);
