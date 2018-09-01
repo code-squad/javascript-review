@@ -42,3 +42,5 @@ Object.keys(widget).forEach(item => {
 		});
     }
 });
+
+console.log(numberKey);
