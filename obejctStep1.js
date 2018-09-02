@@ -24,16 +24,17 @@ const widget = {
         "onMouseUp": "sun1.opacity = (sun1.opacity / 100) * 90;"
     }
 }
-const resultArray = [];
-Object.keys(widget).forEach(function(key) {
-    if(typeof widget[key] == 'object') {
-        const sub = widget[key];
-        Object.keys(sub).forEach(function(key) {
-            if(typeof sub[key] == 'number') {
-                resultArray.push(sub[key]);
-            }
-        });
-    }
-    if(typeof widget[key] == 'number') resultArray.push(widget[key]);
-});
-console.log(resultArray);
+
+const numbersArr = [];
+var extractNumber = (obj) => {
+    if(obj == null) return;
+    
+    Object.keys(obj).forEach((key) => {
+        if(toString.call(obj[key]) === '[object Number]') numbersArr.push(obj[key]);
+        else if(toString.call(obj[key]) === '[object Object]') extractNumber(obj[key]);
+    });
+    return numbersArr;
+};
+
+const numberArr = extractNumber(widget);
+console.log(numberArr);
