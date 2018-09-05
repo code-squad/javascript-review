@@ -29,52 +29,59 @@
   나의 수익률은 OO%입니다.
   */
  
-
  
-const setLuckyNumber = (numbers) => {
-  return numbers;
-}
-  
-const publishPapersByCount = (count = 0) => {
-  const papers = [];
-  
-  for (let i = 0; i < count; i++) {
-    const paper = [];
-    
-    for (let j = 0; j < 6; j++) {
-      paper.push(0);
-    }
-    
-    papers.push(paper);
+const shuffle = function* (array) {
+  let i = array.length;
+  while (i--) {
+    yield array.splice(Math.floor(Math.random() * (i+1)), 1)[0];
   }
-  
-  return papers;
 }
   
-const getRandomLotto = (page) => {
-  const totalLotto = page.map(item => {
-    return item.map(() => {
-      return Math.floor(Math.random() * 45) + 1;;
-    });
-  });
-  
-  return totalLotto;
+const setLuckyNumber = () => {
+  let index = 1;
+  const lottoNumberCounts = Array.from(new Array(45)).map(() => index++);
+  const paper = Array.from((new Array(6)));
+  const randomLottoNumber = shuffle(lottoNumberCounts);
+
+  luckyNumbers = paper.map(() => randomLottoNumber.next().value); 
+
+  console.log('lucky number : \n\n', luckyNumbers);
+
+  return luckyNumbers;
 }
-  
-const checkResult = (lottos) => {
-  const luckyNumbers = setLuckyNumber([12, 25, 32, 41, 15, 6]);
-  
-  const result = lottos.map(lotto => {
-    return lotto.filter(number => {
-      return luckyNumbers.indexOf(number) >= 0;
-    })
+
+const getRandomLotto = (count) => {
+  let index = 1;
+  let lottoNumberCounts = Array.from(new Array(45)).map(() => index++);
+  const lottoPapers = Array.from(new Array(count));
+  const paper = Array.from(new Array(6));
+  const finalLottos = lottoPapers.map(() => {
+    const randomLottoNumber = shuffle(lottoNumberCounts);
+    const lotto = paper.map(() => randomLottoNumber.next().value)
+
+    // splice된 lottoNumberCounts를 초기화 한다.
+    index = 1;
+    lottoNumberCounts = Array.from(new Array(45)).map(() => index++);
+
+    return lotto;
   })
+
+  console.log('buyer number : ');
+  console.log(finalLottos[0], finalLottos[1], '\n');
+  
+  return finalLottos;
+}
+  
+const checkResult = (buyerLottos, luckyNumbers) => {
+  const result = buyerLottos.map(lotto => 
+    lotto.filter(number => luckyNumbers.indexOf(number) >= 0));
   
   return result;
 }
   
-const displayResult = (lottos) => {
-  const score = checkResult(lottos);
+const displayResult = (buyerLottos) => {
+  const luckyNumbers = setLuckyNumber();
+  const score = checkResult(buyerLottos, luckyNumbers);
   let sameThr = 0;
   let sameFou = 0; 
   let sameFiv = 0;
@@ -104,11 +111,10 @@ const displayResult = (lottos) => {
 
 let money = 0;
 
-const buyLottos = (price) => {
-  money = price;
+const buyLottos = (lottoPrice) => {
+  money = lottoPrice;
   const count = Math.floor(money / 1000);
-  const papers = publishPapersByCount(count);
-  const lottos = getRandomLotto(papers);
+  const lottos = getRandomLotto(count);
   displayResult(lottos);
 }
 
