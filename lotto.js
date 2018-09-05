@@ -109,13 +109,12 @@ const displayResult = (buyerLottos) => {
   console.log(`나의 수익률은 ${income / money * 100}%입니다.`)
 }
 
-let money = 0;
-
-const buyLottos = (lottoPrice) => {
-  money = lottoPrice;
-  const count = Math.floor(money / 1000);
-  const lottos = getRandomLotto(count);
+const buyLottos = (money) => {
+  const lottoPrice = 1000;
+  const lottoCount = Math.floor(money / lottoPrice);
+  const lottos = getRandomLotto(lottoCount);
   displayResult(lottos);
 }
 
-buyLottos(2800);
+let money = 2800;
+buyLottos(money);
