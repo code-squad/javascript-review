@@ -30,20 +30,19 @@
   */
  
  
-const shuffle = function* (array) {
-  let i = array.length;
-  while (i--) {
-    yield array.splice(Math.floor(Math.random() * (i+1)), 1)[0];
+const shuffle = function* () {
+  let index = 1;
+  const lottoNumbers = Array.from(new Array(45)).map(() => index++);
+  let lottoNumberLength = lottoNumbers.length;
+
+  while (lottoNumberLength--) {
+    yield lottoNumbers.splice(Math.floor(Math.random() * (lottoNumberLength+1)), 1)[0];
   }
 }
   
 const setLuckyNumber = () => {
-  let index = 1;
-  const lottoNumberCounts = Array.from(new Array(45)).map(() => index++);
-  const paper = Array.from((new Array(6)));
-  const randomLottoNumber = shuffle(lottoNumberCounts);
-
-  luckyNumbers = paper.map(() => randomLottoNumber.next().value); 
+  const randomLottoNumber = shuffle();
+  luckyNumbers = Array.from((new Array(6))).map(() => randomLottoNumber.next().value); 
 
   console.log('lucky number : \n\n', luckyNumbers);
 
@@ -52,16 +51,11 @@ const setLuckyNumber = () => {
 
 const getRandomLotto = (count) => {
   let index = 1;
-  let lottoNumberCounts = Array.from(new Array(45)).map(() => index++);
   const lottoPapers = Array.from(new Array(count));
   const paper = Array.from(new Array(6));
   const finalLottos = lottoPapers.map(() => {
-    const randomLottoNumber = shuffle(lottoNumberCounts);
+    const randomLottoNumber = shuffle();
     const lotto = paper.map(() => randomLottoNumber.next().value)
-
-    // splice된 lottoNumberCounts를 초기화 한다.
-    index = 1;
-    lottoNumberCounts = Array.from(new Array(45)).map(() => index++);
 
     return lotto;
   })
@@ -100,7 +94,7 @@ const displayResult = (buyerLottos) => {
 
   income = sameThr * 5000 + sameFou * 50000 + sameFiv * 1500000 + sameSix * 2000000000;
   
-  console.log(`당첨 통계`)
+  console.log(`\n당첨 통계`)
   console.log(`---------`)
   console.log(`3개 일치 (5000원)- ${sameThr}개`)
   console.log(`4개 일치 (50000원)- ${sameFou}개`)
